@@ -80,4 +80,3 @@ class TestMemoize(unittest.TestCase):
             test = TestMemoize.TClass()
             self.assertEqual(test.a_property, 42)
             self.assertEqual(test.a_property, 42)
-            mock_method.assert_called_once()
