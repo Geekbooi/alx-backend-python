@@ -25,7 +25,7 @@ class TestGithubOrgClient(unittest.TestCase):
         test_client = client.GithubOrgClient(org)
         self.assertEqual(test_client.org, mock_object.return_value)
         mock_object.assert_called_once_with(client.GithubOrgClient.
-                                            ORG_URL.format(org=org))
+                ORG_URL.format(org=org))
 
     def test_public_repos_url(self):
         """Test _public_repos_url method"""
@@ -41,10 +41,10 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_public_repos(self, payloads: MagicMock):
         """Test public_repos method"""
         with mock.patch('client.GithubOrgClient._public_repos_url',
-                        new_callable=PropertyMock) as mock_method:
+                new_callable=PropertyMock) as mock_method:
             test_client = client.GithubOrgClient("ope")
             self.assertEqual(test_client.public_repos(),
-                             [repo['name'] for repo in payloads.return_value])
+                    [repo['name'] for repo in payloads.return_value])
             mock_method.assert_called_once()
             payloads.assert_called_once()
             client.get_json.assert_called_once()
@@ -57,8 +57,7 @@ class TestGithubOrgClient(unittest.TestCase):
         """Test has_license method"""
         test_client = client.GithubOrgClient("ope")
         self.assertEqual(test_client.has_license(repo=lisc, license_key=key),
-                         ret)
-
+                ret)
 
 @parameterized_class([
     {"org_payload": fixtures.TEST_PAYLOAD[0][0]},
@@ -80,7 +79,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """Test public_repos method"""
         test_client = client.GithubOrgClient("ope")
         self.assertEqual(test_client.public_repos(),
-                         [repo for repo in fixtures.TEST_PAYLOAD[0][2]])
+                [repo for repo in fixtures.TEST_PAYLOAD[0][2]])
 
     @classmethod
     def tearDownClass(cls):
